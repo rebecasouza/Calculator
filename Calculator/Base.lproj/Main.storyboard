@@ -264,6 +264,9 @@
                             <constraint firstItem="dU9-2X-UK5" firstAttribute="width" secondItem="lUx-ks-I4S" secondAttribute="width" id="yco-D7-1xs"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="label" destination="QJ7-ri-xjE" id="x4i-i6-Udt"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
