@@ -8,8 +8,20 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+enum modes {
+    case NOT_SET
+    case ADDITION
+    case SUBTRACTION
+    case MULTIPLICATION
+}
 
+class ViewController: UIViewController {
+    
+    var labelString: String = "0"
+    var currentMode: modes = .NOT_SET
+    var savedNum: Int = 0
+    var lastButtonWasMode: Bool = false
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -19,7 +31,34 @@ class ViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-
+    
+    @IBAction func didPressPlus(_ sender: Any) {
+    }
+    
+    @IBAction func didPressMinus(_ sender: Any) {
+    }
+    
+    @IBAction func didPressTimes(_ sender: Any) {
+    }
+    
+    @IBAction func didPressEquals(_ sender: Any) {
+    }
+    
+    @IBAction func didPressClear(_ sender: Any) {
+    }
+       
+    @IBAction func didPressNumber(_ sender: UIButton) {
+        let stringValue: String? = sender.titleLabel?.text
+        labelString = labelString.appending(stringValue!)
+    }
+    
+    func updateText() {
+        
+    }
+    
+    func changeMode(newMode: modes) {
+        
+    }
+    
 }
 
