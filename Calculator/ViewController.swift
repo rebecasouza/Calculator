@@ -35,15 +35,39 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didPressPlus(_ sender: Any) {
+        changeMode(newMode: .ADDITION)
     }
     
     @IBAction func didPressMinus(_ sender: Any) {
+        changeMode(newMode: .SUBTRACTION)
     }
     
     @IBAction func didPressTimes(_ sender: Any) {
+        changeMode(newMode: .MULTIPLICATION)
     }
     
     @IBAction func didPressEquals(_ sender: Any) {
+        guard let labelInt: Int = Int(labelString) else {
+            return
+        }
+        
+        if (currentMode == .NOT_SET || lastButtonWasMode == true) {
+            return
+        }
+        
+        if (currentMode == .ADDITION) {
+            savedNum += labelInt
+        }
+        else if (currentMode == .SUBTRACTION) {
+            savedNum -= labelInt
+        }
+        else if (currentMode == .MULTIPLICATION) {
+            savedNum *= labelInt
+        }
+        currentMode = .NOT_SET
+        labelString = "\(savedNum)"
+        updateText()
+        lastButtonWasMode = true
     }
     
     @IBAction func didPressClear(_ sender: Any) {
@@ -56,6 +80,12 @@ class ViewController: UIViewController {
        
     @IBAction func didPressNumber(_ sender: UIButton) {
         let stringValue: String? = sender.titleLabel?.text
+        
+        if (lastButtonWasMode == true) {
+            lastButtonWasMode = false
+            labelString = "0"
+        }
+        
         labelString = labelString.appending(stringValue!)
         updateText()
     }
@@ -64,10 +94,21 @@ class ViewController: UIViewController {
         guard let labelInt: Int = Int(labelString) else {
             return
         }
+        
+        if (currentMode == .NOT_SET){
+            savedNum = labelInt
+        }
+        
         label.text = "\(labelInt)"
     }
     
     func changeMode(newMode: modes) {
+        if (savedNum == 0) {
+            return
+        }
+        
+        currentMode = newMode
+        lastButtonWasMode = true
         
     }
     
